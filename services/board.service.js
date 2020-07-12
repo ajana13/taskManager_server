@@ -28,5 +28,10 @@ module.exports = {
         } else {
             res.send(data)
         }
-    }
+    },
+    update(req, res) {
+        Board.findByIdAndUpdate(req.params.boardId, { title: req.body.title }, (err, board) => {
+            this._handleResponse(err, board, res)
+        })
+    },
 }
