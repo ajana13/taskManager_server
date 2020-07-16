@@ -34,4 +34,17 @@ module.exports = {
             this._handleResponse(err, board, res)
         })
     },
+    updateListsOrder(req, res) {
+        Board.findById(req.body.boardId, (err, board) => {
+            if (err) {
+                res.status(400).end()
+                return
+            }
+
+            board.lists = req.body.listIds
+            board.save((err, savedBoard) => {
+                this._handleResponse(err, savedBoard, res)
+            })
+        })
+    },
 }
